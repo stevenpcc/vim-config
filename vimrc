@@ -15,7 +15,7 @@ set relativenumber
 set number
 
 " Map double-tap space to open CtrlP
-nnoremap <silent> <leader><space> :ctrlp<cr>
+nnoremap <silent> <leader><space> :CtrlP<cr>
 
 " Split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -76,7 +76,7 @@ nmap <leader>mt :call ToggleMouseSettings()<CR>
     
   if &term =~ '^xterm'
     " normal mode
-    let &t_EI .= "\<Esc>[0 q"
+    let &t_EI .= "\<Esc>[2 q"
     " insert mode
     let &t_SI .= "\<Esc>[6 q"
   endif
