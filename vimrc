@@ -11,7 +11,11 @@ nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
 nmap 0 ^ 
 imap jk <esc>
+set relativenumber
 set number
+
+" Map double-tap space to open CtrlP
+nnoremap <silent> <leader><space> :ctrlp<cr>
 
 " Split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -28,6 +32,7 @@ set splitright
 set modelines=0   " Disable modelines as a security precaution
 set nomodeline
 
+" Enable incremental search: highlights matches as you type a search pattern
 set incsearch
 
 colo smyck
@@ -39,6 +44,25 @@ nmap <Leader>gf :diffget //2<CR>
 set ttyfast
 set mouse=a
 set ttymouse=sgr
+
+function! ToggleMouseSettings()
+    if &mouse != '' " Mouse is currently enabled
+        set mouse=
+        set ttymouse=
+	set nonumber
+	set norelativenumber
+        echo "Mouse and ttymouse disabled"
+    else
+        set mouse=a
+        set ttymouse=sgr
+	set number
+	set relativenumber
+        echo "Mouse and ttymouse enabled"
+    endif
+endfunction
+
+" Keymap to toggle mouse settings (using <leader>mt)
+nmap <leader>mt :call ToggleMouseSettings()<CR>
 
 " Cursor in terminal
   " https://vim.fandom.com/wiki/Configuring_the_cursor
